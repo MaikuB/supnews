@@ -1,0 +1,4 @@
+enum StoryFeedType {
+  New,
+  Top,
+}
