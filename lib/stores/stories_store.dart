@@ -29,7 +29,7 @@ abstract class StoriesStoreBase implements Store {
       this._storyFeedType, this._itemsService, this._preferencesService);
 
   @action
-  Future<void> refresh() {
+  Future<void> refresh() async {
     return _loadStories(true);
   }
 
@@ -55,6 +55,7 @@ abstract class StoriesStoreBase implements Store {
     return Share.share(url);
   }
 
+  @action
   Future<void> _loadStories(bool isRefreshing) async {
     try {
       if (isRefreshing) {

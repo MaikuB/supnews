@@ -41,18 +41,23 @@ mixin _$StoriesStore on StoriesStoreBase, Store {
     _$storiesAtom.reportChanged();
   }
 
-  final _$StoriesStoreBaseActionController =
-      ActionController(name: 'StoriesStoreBase');
+  final _$refreshAsyncAction = AsyncAction('refresh');
 
   @override
   Future<void> refresh() {
-    final _$actionInfo = _$StoriesStoreBaseActionController.startAction();
-    try {
-      return super.refresh();
-    } finally {
-      _$StoriesStoreBaseActionController.endAction(_$actionInfo);
-    }
+    return _$refreshAsyncAction.run(() => super.refresh());
   }
+
+  final _$_loadStoriesAsyncAction = AsyncAction('_loadStories');
+
+  @override
+  Future<void> _loadStories(bool isRefreshing) {
+    return _$_loadStoriesAsyncAction
+        .run(() => super._loadStories(isRefreshing));
+  }
+
+  final _$StoriesStoreBaseActionController =
+      ActionController(name: 'StoriesStoreBase');
 
   @override
   Future<void> loadInitialStories() {

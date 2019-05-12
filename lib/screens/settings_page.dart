@@ -18,17 +18,24 @@ class _SettingsPageState extends State<SettingsPage>
       body: Column(
         children: <Widget>[
           Observer(
-            builder: (_) => SwitchListTile(
-                  title: const Text('Dark mode'),
-                  value: store.useDarkMode,
-                  onChanged: (bool value) {
-                    store.setDarkMode(value);
-                  },
+            builder: (_) => Padding(
+                  padding: EdgeInsets.fromLTRB(0, 0, 0, 16),
+                  child: SwitchListTile(
+                    title: Text('Dark mode'),
+                    subtitle: Text(
+                        'Note: this won\'t affect the articles that are displayed'),
+                    value: store.useDarkMode,
+                    onChanged: (bool value) {
+                      store.setDarkMode(value);
+                    },
+                  ),
                 ),
           ),
           Observer(
             builder: (_) => SwitchListTile(
-                  title: const Text('Open articles in app'),
+                  title: Text('Display stories within app'),
+                  subtitle: Text(
+                      'Controls the default behaviour when tapping on a story to read'),
                   value: store.openInApp,
                   onChanged: (bool value) {
                     store.setOpenInApp(value);

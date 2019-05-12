@@ -31,15 +31,31 @@ class Story extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        item.title,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 4),
+                        child: Text(
+                          item.title,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
-                      Text(item.by),
-                      Text('${item.kids.length} comments'),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 4),
+                        child: Text(
+                          item.by,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        '${item.kids.length} comments',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w300,
+                        ),
+                      ),
                     ],
                   ),
                 ),
