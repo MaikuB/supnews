@@ -16,7 +16,7 @@ abstract class StoriesStoreBase implements Store {
   final ItemsService _itemsService;
   final PreferencesService _preferencesService;
   final AsyncMemoizer _asyncMemoizer = AsyncMemoizer();
-
+  List<int> _storyIds;
   bool isInitialLoadDone = false;
 
   @observable
@@ -34,8 +34,8 @@ abstract class StoriesStoreBase implements Store {
   }
 
   @action
-  Future<void> loadInitialStories() async {
-    await _asyncMemoizer.runOnce(() async {
+  Future<void> loadInitialStories() {
+    return _asyncMemoizer.runOnce(() async {
       await _loadStories(false);
     });
   }
@@ -57,15 +57,16 @@ abstract class StoriesStoreBase implements Store {
 
   Future<void> _loadStories(bool isRefreshing) async {
     try {
-      // invalidate all cached items. possible to comment out this line and let it return cached item details if they were available
-      _itemsService.invalidateCache();
+      if (isRefreshing) {
+        _itemsService.invalidateCache(_storyIds);
+      }
       if (!isRefreshing) {
         isLoadingInitialStories = true;
       }
-      var storyIds = await _itemsService.fetchItemIds(_storyFeedType);
+      _storyIds = await _itemsService.fetchItemIds(_storyFeedType);
       stories.clear();
       stories
-          .addAll(storyIds.map((id) => _itemsService.fetchItem(id)).toList());
+          .addAll(_storyIds.map((id) => _itemsService.fetchItem(id)).toList());
     } finally {
       if (!isRefreshing) {
         isLoadingInitialStories = false;

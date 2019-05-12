@@ -20,7 +20,16 @@ class ItemsService {
     return _hackerNewsApiService.fetchItemIds(storyFeedType);
   }
 
-  void invalidateCache() {
-    _cachedItems.values?.forEach((c) => c?.invalidate());
+  void invalidateCache(List<int> ids) {
+    if (ids == null) {
+      return;
+    }
+
+    ids.forEach((id) {
+      if (_cachedItems.containsKey(id)) {
+        _cachedItems[id].invalidate();
+        _cachedItems.remove(id);
+      }
+    });
   }
 }

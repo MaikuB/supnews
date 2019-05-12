@@ -41,14 +41,6 @@ mixin _$StoriesStore on StoriesStoreBase, Store {
     _$storiesAtom.reportChanged();
   }
 
-  final _$loadInitialStoriesAsyncAction = AsyncAction('loadInitialStories');
-
-  @override
-  Future<void> loadInitialStories() {
-    return _$loadInitialStoriesAsyncAction
-        .run(() => super.loadInitialStories());
-  }
-
   final _$StoriesStoreBaseActionController =
       ActionController(name: 'StoriesStoreBase');
 
@@ -57,6 +49,16 @@ mixin _$StoriesStore on StoriesStoreBase, Store {
     final _$actionInfo = _$StoriesStoreBaseActionController.startAction();
     try {
       return super.refresh();
+    } finally {
+      _$StoriesStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  Future<void> loadInitialStories() {
+    final _$actionInfo = _$StoriesStoreBaseActionController.startAction();
+    try {
+      return super.loadInitialStories();
     } finally {
       _$StoriesStoreBaseActionController.endAction(_$actionInfo);
     }

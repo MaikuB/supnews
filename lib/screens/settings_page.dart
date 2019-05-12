@@ -3,9 +3,16 @@ import 'package:provider/provider.dart';
 import 'package:supnews/stores/settings_store.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-class SettingsPage extends StatelessWidget {
+class SettingsPage extends StatefulWidget {
+  @override
+  _SettingsPageState createState() => _SettingsPageState();
+}
+
+class _SettingsPageState extends State<SettingsPage>
+    with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final store = Provider.of<SettingsStore>(context);
     return Scaffold(
       body: Column(
@@ -32,4 +39,7 @@ class SettingsPage extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
