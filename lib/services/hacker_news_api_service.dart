@@ -9,7 +9,6 @@ class HackerNewsApiService {
   Future<Item> fetchItem(int id) async {
     var response = await http.get('$_baseUrl/item/$id.json');
     if (response.statusCode == 200) {
-      print('200 for item $id');
       return Item.fromJson(response.body);
     }
     throw Exception('Could not fetch story');
