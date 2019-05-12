@@ -53,7 +53,11 @@ class ThemeableApp extends StatelessWidget {
             fontFamily: 'Lato',
             brightness:
                 store.useDarkMode == true ? Brightness.dark : Brightness.light,
-            primarySwatch: Colors.blue,
+            primarySwatch: Colors.teal,
+            textTheme: TextTheme(
+              subhead: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              subtitle: TextStyle(fontWeight: FontWeight.w300),
+            ),
           ),
           home: SafeArea(
             child: CupertinoTabScaffold(
@@ -64,7 +68,7 @@ class ThemeableApp extends StatelessWidget {
                     title: Text('New'),
                   ),
                   BottomNavigationBarItem(
-                    icon: Icon(Icons.featured_play_list),
+                    icon: Icon(Icons.trending_up),
                     title: Text('Top'),
                   ),
                   BottomNavigationBarItem(
@@ -84,7 +88,6 @@ class ThemeableApp extends StatelessWidget {
                       child: Consumer<NewStoriesStore>(
                         builder: (context, value, _) => NewStoriesPage(
                               value,
-                              key: PageStorageKey('New'),
                             ),
                       ),
                     );
@@ -97,7 +100,6 @@ class ThemeableApp extends StatelessWidget {
                       child: Consumer<TopStoriesStore>(
                         builder: (context, value, _) => TopStoriesPage(
                               value,
-                              key: PageStorageKey('Top'),
                             ),
                       ),
                     );
@@ -109,77 +111,5 @@ class ThemeableApp extends StatelessWidget {
             ),
           )),
     );
-    // return Observer(
-    //   builder: (_) => MaterialApp(
-    //         title: 'SUpNews',
-    //         theme: ThemeData(
-    //           fontFamily: 'Lato',
-    //           brightness: store.useDarkMode == true
-    //               ? Brightness.dark
-    //               : Brightness.light,
-    //           primarySwatch: Colors.blue,
-    //         ),
-    //         home: DefaultTabController(
-    //           length: 3,
-    //           child: Scaffold(
-    //             bottomNavigationBar: BottomAppBar(
-    //               child: TabBar(
-    //                 tabs: [
-    //                   Tab(
-    //                     icon: Icon(
-    //                       Icons.new_releases,
-    //                       color: Colors.red,
-    //                     ),
-    //                   ),
-    //                   Tab(
-    //                     icon: Icon(
-    //                       Icons.featured_play_list,
-    //                       color: Colors.red,
-    //                     ),
-    //                   ),
-    //                   Tab(
-    //                     icon: Icon(
-    //                       Icons.settings,
-    //                       color: Colors.red,
-    //                     ),
-    //                   ),
-    //                 ],
-    //               ),
-    //             ),
-    //             body: SafeArea(
-    //               child: TabBarView(
-    //                 children: [
-    //                   Provider(
-    //                     builder: (_) => NewStoriesStore(
-    //                           Provider.of<ItemsService>(context),
-    //                           Provider.of<PreferencesService>(context),
-    //                         ),
-    //                     child: Consumer<NewStoriesStore>(
-    //                       builder: (context, value, _) => NewStoriesPage(
-    //                             value,
-    //                             key: PageStorageKey('New'),
-    //                           ),
-    //                     ),
-    //                   ),
-    //                   Provider(
-    //                     builder: (_) => TopStoriesStore(
-    //                           Provider.of<ItemsService>(context),
-    //                           Provider.of<PreferencesService>(context),
-    //                         ),
-    //                     child: Consumer<TopStoriesStore>(
-    //                       builder: (context, value, _) => TopStoriesPage(
-    //                             value,
-    //                             key: PageStorageKey('Top'),
-    //                           ),
-    //                     ),
-    //                   ),
-    //                   SettingsPage(),
-    //                 ],
-    //               ),
-    //             ),
-    //           ),
-    //         ),
-    //       ),
-    // );
   }
 }

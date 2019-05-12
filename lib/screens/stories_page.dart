@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:supnews/models/item.dart';
 import 'package:supnews/stores/stories_store.dart';
+import 'package:supnews/widgets/placeholder_stories.dart';
 import 'package:supnews/widgets/placeholder_story.dart';
 import 'package:supnews/widgets/story.dart';
 
@@ -62,7 +63,7 @@ class _StoriesPageState<T extends StoriesStore> extends State<StoriesPage>
               );
 
             default:
-              return PlaceholderStory();
+              return PlaceholderStories();
           }
         },
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:supnews/models/item.dart';
 import 'package:supnews/stores/stories_store.dart';
+import 'package:intl/intl.dart' show DateFormat;
 
 class Story extends StatelessWidget {
   final Item item;
@@ -26,38 +27,28 @@ class Story extends StatelessWidget {
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 4),
-                        child: Text(
-                          item.title,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                          ),
-                        ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 4),
+                      child: Text(item.title,
+                          style: Theme.of(context).textTheme.subhead),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 4),
+                      child: Text(
+                        '${item.by} - ${DateFormat().format(
+                          DateTime.fromMillisecondsSinceEpoch(item.time * 1000),
+                        )}',
+                        style: Theme.of(context).textTheme.subtitle,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 4),
-                        child: Text(
-                          item.by,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                          ),
-                        ),
-                      ),
-                      Text(
-                        '${item.kids.length} comments',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w300,
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                    Text(
+                      '${item.kids.length} ${item.kids.length == 1 ? 'comment' : 'comments'}',
+                      style: Theme.of(context).textTheme.subtitle,
+                    ),
+                  ],
                 ),
               ),
             ),

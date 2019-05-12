@@ -28,6 +28,7 @@ dependencies:
   built_value: ^6.5.0
   shared_preferences: ^0.5.2
   share: ^0.6.1+1
+  intl: ^0.15.8
   async: 
 
   
@@ -52,5 +53,3 @@ flutter:
           weight: 300
         - asset: fonts/Lato-Medium.ttf
           weight: 500
-        - asset: fonts/Lato-Bold.ttf
-          weight: 700
