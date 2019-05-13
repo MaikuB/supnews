@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:supnews/models/item.dart';
-import 'package:supnews/stores/stories_store.dart';
+import 'package:hnpwa_client/hnpwa_client.dart';
 import 'package:intl/intl.dart' show DateFormat;
 
+import 'styles.dart';
+import '../stores/stories_store.dart';
+
 class Story extends StatelessWidget {
-  final Item item;
+  final FeedItem item;
   final StoriesStore store;
   Story(this.store, this.item, {Key key}) : super(key: key);
 
@@ -19,7 +21,7 @@ class Story extends StatelessWidget {
               child: CircleAvatar(
                 child: Center(
                   child: Text(
-                    item.score.toString(),
+                    item.points.toString(),
                   ),
                 ),
               ),
@@ -30,22 +32,20 @@ class Story extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 4),
-                      child: Text(item.title,
+                    TextSpacer(
+                      Text(item.title,
                           style: Theme.of(context).textTheme.subhead),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 4),
-                      child: Text(
-                        '${item.by} - ${DateFormat().format(
+                    TextSpacer(
+                      Text(
+                        '${item.user} - ${DateFormat().format(
                           DateTime.fromMillisecondsSinceEpoch(item.time * 1000),
                         )}',
                         style: Theme.of(context).textTheme.subtitle,
                       ),
                     ),
                     Text(
-                      '${item.kids.length} ${item.kids.length == 1 ? 'comment' : 'comments'}',
+                      '${item.commentsCount} ${item.commentsCount == 1 ? 'comment' : 'comments'}',
                       style: Theme.of(context).textTheme.subtitle,
                     ),
                   ],

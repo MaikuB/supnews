@@ -1,6 +1,5 @@
 import 'package:mobx/mobx.dart';
-import 'package:supnews/services/preferences_service.dart';
-
+import '../services/preferences_service.dart';
 part 'settings_store.g.dart';
 
 class SettingsStore = SettingsStoreBase with _$SettingsStore;

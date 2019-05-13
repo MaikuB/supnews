@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:supnews/models/item.dart';
-import 'package:supnews/stores/stories_store.dart';
-import 'package:supnews/widgets/placeholder_stories.dart';
-import 'package:supnews/widgets/placeholder_story.dart';
-import 'package:supnews/widgets/story.dart';
+import '../stores/stories_store.dart';
+import '../widgets/placeholder_stories.dart';
+import '../widgets/placeholder_story.dart';
+import '../widgets/story.dart';
 
 class StoriesPage<T extends StoriesStore> extends StatefulWidget {
   final T _store;
@@ -31,33 +30,48 @@ class _StoriesPageState<T extends StoriesStore> extends State<StoriesPage>
           switch (snapshot.connectionState) {
             case ConnectionState.done:
               if (snapshot.hasError) {
-                return Text('Could not load stories: ${snapshot.error}');
+                return Center(
+                  child: Column(
+                    children: [
+                      Text('Oops something went wrong'),
+                      RaisedButton(
+                        child: Text('Retry'),
+                        onPressed: () async {
+                          await store.refresh();
+                        },
+                      ),
+                    ],
+                  ),
+                );
               }
               return RefreshIndicator(
                 onRefresh: () async {
                   await store.refresh();
                 },
                 child: Observer(
-                  builder: (_) => ListView.builder(
-                        itemCount: store.stories.length,
-                        itemBuilder: (context, index) => FutureBuilder(
-                              future: store.stories[index],
-                              builder: (_, AsyncSnapshot<Item> snapshot) {
-                                switch (snapshot.connectionState) {
-                                  case ConnectionState.done:
-                                    debugPrint('show $index');
-                                    if (snapshot.hasError) {
-                                      return Text(
-                                          'Could not load story ${snapshot.error}');
-                                    }
-                                    return Story(store, snapshot.data);
-
-                                  default:
-                                    debugPrint('hit $index');
-                                    return PlaceholderStory();
-                                }
-                              },
-                            ),
+                  builder: (_) => NotificationListener<ScrollNotification>(
+                        onNotification: (scrollNotification) {
+                          if (scrollNotification.metrics.pixels ==
+                              scrollNotification.metrics.maxScrollExtent) {
+                            store.loadNextPage();
+                          }
+                        },
+                        child: ListView.builder(
+                            itemCount: store.feedItems.length,
+                            itemBuilder: (context, index) {
+                              if (index == store.feedItems.length - 1 &&
+                                  store.hasNextPage &&
+                                  !store.loadingNextPage) {
+                                store.loadNextPage();
+                                return Column(
+                                  children: [
+                                    Story(store, store.feedItems[index]),
+                                    PlaceholderStory(),
+                                  ],
+                                );
+                              }
+                              return Story(store, store.feedItems[index]);
+                            }),
                       ),
                 ),
               );

@@ -19,17 +19,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  http: ^0.12.0+2
+  http:
   mobx: ^0.1.4
   flutter_mobx: ^0.1.3
   provider: ^2.0.0+1
   url_launcher: ^5.0.2
   cupertino_icons: ^0.1.2
-  built_value: ^6.5.0
   shared_preferences: ^0.5.2
   share: ^0.6.1+1
   intl: ^0.15.8
-  async: 
+  hnpwa_client: ^1.0.0
+  async:
 
   
 
@@ -38,7 +38,6 @@ dev_dependencies:
     sdk: flutter
   mobx_codegen: ^0.1.3
   build_runner: ^1.4.0
-  built_value_generator: ^6.5.0
 
 flutter:
   uses-material-design: true

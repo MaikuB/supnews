@@ -8,13 +8,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.36.3"
-  analyzer_plugin:
-    dependency: transitive
-    description:
-      name: analyzer_plugin
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.1-alpha.8"
   args:
     dependency: transitive
     description:
@@ -84,18 +77,11 @@ packages:
       name: built_collection
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.2.1"
+    version: "4.2.2"
   built_value:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: built_value
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "6.5.0"
-  built_value_generator:
-    dependency: "direct dev"
-    description:
-      name: built_value_generator
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.5.0"
@@ -200,6 +186,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.0"
+  hnpwa_client:
+    dependency: "direct main"
+    description:
+      name: hnpwa_client
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   html:
     dependency: transitive
     description:
@@ -213,7 +206,7 @@ packages:
       name: http
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.0+2"
+    version: "0.11.3+17"
   http_multi_server:
     dependency: transitive
     description:

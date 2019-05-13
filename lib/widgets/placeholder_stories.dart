@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:supnews/widgets/placeholder_story.dart';
+import 'placeholder_story.dart';
 
 class PlaceholderStories extends StatelessWidget {
   @override

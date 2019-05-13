@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:supnews/stores/settings_store.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import '../stores/settings_store.dart';
 
 class SettingsPage extends StatefulWidget {
   @override

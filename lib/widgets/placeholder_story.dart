@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:supnews/widgets/placeholder_container.dart';
+
+import 'placeholder_container.dart';
+import 'styles.dart';
 
 class PlaceholderStory extends StatelessWidget {
   @override
@@ -25,18 +27,16 @@ class PlaceholderStory extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 4),
-                    child: PlaceholderContainer(
+                  TextSpacer(
+                    PlaceholderContainer(
                       child: Text(
                         '',
                         style: Theme.of(context).textTheme.subhead,
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 4),
-                    child: PlaceholderContainer(
+                  TextSpacer(
+                    PlaceholderContainer(
                       child: Text(
                         '',
                         style: Theme.of(context).textTheme.subtitle,

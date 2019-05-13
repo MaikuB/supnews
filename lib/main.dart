@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:hnpwa_client/hnpwa_client.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supnews/screens/new_stories_page.dart';
 import 'package:supnews/screens/settings_page.dart';
 import 'package:supnews/screens/top_stories_page.dart';
-import 'package:supnews/services/items_service.dart';
 import 'package:supnews/services/preferences_service.dart';
 import 'package:supnews/stores/new_stories_store.dart';
 import 'package:supnews/stores/settings_store.dart';
@@ -30,8 +30,8 @@ class App extends StatelessWidget {
         Provider<PreferencesService>(
           builder: (_) => _preferencesService,
         ),
-        Provider<ItemsService>(
-          builder: (_) => ItemsService(),
+        Provider<HnpwaClient>(
+          builder: (_) => HnpwaClient(),
         ),
         Provider<SettingsStore>(
           builder: (_) => SettingsStore(_preferencesService),
@@ -82,7 +82,7 @@ class ThemeableApp extends StatelessWidget {
                   case 0:
                     return Provider(
                       builder: (_) => NewStoriesStore(
-                            Provider.of<ItemsService>(context),
+                            Provider.of<HnpwaClient>(context),
                             Provider.of<PreferencesService>(context),
                           ),
                       child: Consumer<NewStoriesStore>(
@@ -94,7 +94,7 @@ class ThemeableApp extends StatelessWidget {
                   case 1:
                     return Provider(
                       builder: (_) => TopStoriesStore(
-                            Provider.of<ItemsService>(context),
+                            Provider.of<HnpwaClient>(context),
                             Provider.of<PreferencesService>(context),
                           ),
                       child: Consumer<TopStoriesStore>(

@@ -9,36 +9,69 @@ part of 'stories_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars
 
 mixin _$StoriesStore on StoriesStoreBase, Store {
-  final _$isLoadingInitialStoriesAtom =
-      Atom(name: 'StoriesStoreBase.isLoadingInitialStories');
+  final _$hasNextPageAtom = Atom(name: 'StoriesStoreBase.hasNextPage');
 
   @override
-  bool get isLoadingInitialStories {
-    _$isLoadingInitialStoriesAtom.reportObserved();
-    return super.isLoadingInitialStories;
+  bool get hasNextPage {
+    _$hasNextPageAtom.reportObserved();
+    return super.hasNextPage;
   }
 
   @override
-  set isLoadingInitialStories(bool value) {
-    _$isLoadingInitialStoriesAtom.context
-        .checkIfStateModificationsAreAllowed(_$isLoadingInitialStoriesAtom);
-    super.isLoadingInitialStories = value;
-    _$isLoadingInitialStoriesAtom.reportChanged();
+  set hasNextPage(bool value) {
+    _$hasNextPageAtom.context
+        .checkIfStateModificationsAreAllowed(_$hasNextPageAtom);
+    super.hasNextPage = value;
+    _$hasNextPageAtom.reportChanged();
   }
 
-  final _$storiesAtom = Atom(name: 'StoriesStoreBase.stories');
+  final _$_isLoadingNextPageAtom =
+      Atom(name: 'StoriesStoreBase._isLoadingNextPage');
 
   @override
-  ObservableList<Future<Item>> get stories {
-    _$storiesAtom.reportObserved();
-    return super.stories;
+  bool get _isLoadingNextPage {
+    _$_isLoadingNextPageAtom.reportObserved();
+    return super._isLoadingNextPage;
   }
 
   @override
-  set stories(ObservableList<Future<Item>> value) {
-    _$storiesAtom.context.checkIfStateModificationsAreAllowed(_$storiesAtom);
-    super.stories = value;
-    _$storiesAtom.reportChanged();
+  set _isLoadingNextPage(bool value) {
+    _$_isLoadingNextPageAtom.context
+        .checkIfStateModificationsAreAllowed(_$_isLoadingNextPageAtom);
+    super._isLoadingNextPage = value;
+    _$_isLoadingNextPageAtom.reportChanged();
+  }
+
+  final _$feedItemsAtom = Atom(name: 'StoriesStoreBase.feedItems');
+
+  @override
+  ObservableList<FeedItem> get feedItems {
+    _$feedItemsAtom.reportObserved();
+    return super.feedItems;
+  }
+
+  @override
+  set feedItems(ObservableList<FeedItem> value) {
+    _$feedItemsAtom.context
+        .checkIfStateModificationsAreAllowed(_$feedItemsAtom);
+    super.feedItems = value;
+    _$feedItemsAtom.reportChanged();
+  }
+
+  final _$loadingNextPageAtom = Atom(name: 'StoriesStoreBase.loadingNextPage');
+
+  @override
+  bool get loadingNextPage {
+    _$loadingNextPageAtom.reportObserved();
+    return super.loadingNextPage;
+  }
+
+  @override
+  set loadingNextPage(bool value) {
+    _$loadingNextPageAtom.context
+        .checkIfStateModificationsAreAllowed(_$loadingNextPageAtom);
+    super.loadingNextPage = value;
+    _$loadingNextPageAtom.reportChanged();
   }
 
   final _$refreshAsyncAction = AsyncAction('refresh');
@@ -48,12 +81,18 @@ mixin _$StoriesStore on StoriesStoreBase, Store {
     return _$refreshAsyncAction.run(() => super.refresh());
   }
 
+  final _$loadNextPageAsyncAction = AsyncAction('loadNextPage');
+
+  @override
+  Future<void> loadNextPage() {
+    return _$loadNextPageAsyncAction.run(() => super.loadNextPage());
+  }
+
   final _$_loadStoriesAsyncAction = AsyncAction('_loadStories');
 
   @override
-  Future<void> _loadStories(bool isRefreshing) {
-    return _$_loadStoriesAsyncAction
-        .run(() => super._loadStories(isRefreshing));
+  Future<void> _loadStories() {
+    return _$_loadStoriesAsyncAction.run(() => super._loadStories());
   }
 
   final _$StoriesStoreBaseActionController =
