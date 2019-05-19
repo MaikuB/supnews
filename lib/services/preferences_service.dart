@@ -4,23 +4,19 @@ class PreferencesService {
   final String _useDarkModeKey = 'useDarkMode';
   final String _openInAppKey = 'openInApp';
 
-  SharedPreferences _sharedPreferences;
+  final SharedPreferences _sharedPreferences;
 
-  PreferencesService(this._sharedPreferences);
+  const PreferencesService(this._sharedPreferences);
 
-  void setUseDarkMode(bool useDarkMode) {
+  set useDarkMode(bool useDarkMode) {
     _sharedPreferences.setBool(_useDarkModeKey, useDarkMode);
   }
 
-  bool getUseDarkMode() {
-    return _sharedPreferences.getBool(_useDarkModeKey) ?? false;
-  }
+  bool get useDarkMode => _sharedPreferences.getBool(_useDarkModeKey) ?? false;
 
-  bool getOpenInApp() {
-    return _sharedPreferences.getBool(_openInAppKey) ?? true;
-  }
+  bool get openInApp => _sharedPreferences.getBool(_openInAppKey) ?? true;
 
-  void setOpenInApp(bool openInApp) {
+  set openInApp(bool openInApp) {
     _sharedPreferences.setBool(_openInAppKey, openInApp);
   }
 }

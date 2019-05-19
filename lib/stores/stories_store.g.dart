@@ -58,6 +58,23 @@ mixin _$StoriesStore on StoriesStoreBase, Store {
     _$feedItemsAtom.reportChanged();
   }
 
+  final _$loadFeedItemsFutureAtom =
+      Atom(name: 'StoriesStoreBase.loadFeedItemsFuture');
+
+  @override
+  ObservableFuture get loadFeedItemsFuture {
+    _$loadFeedItemsFutureAtom.reportObserved();
+    return super.loadFeedItemsFuture;
+  }
+
+  @override
+  set loadFeedItemsFuture(ObservableFuture value) {
+    _$loadFeedItemsFutureAtom.context
+        .checkIfStateModificationsAreAllowed(_$loadFeedItemsFutureAtom);
+    super.loadFeedItemsFuture = value;
+    _$loadFeedItemsFutureAtom.reportChanged();
+  }
+
   final _$loadingNextPageAtom = Atom(name: 'StoriesStoreBase.loadingNextPage');
 
   @override
@@ -74,13 +91,6 @@ mixin _$StoriesStore on StoriesStoreBase, Store {
     _$loadingNextPageAtom.reportChanged();
   }
 
-  final _$refreshAsyncAction = AsyncAction('refresh');
-
-  @override
-  Future<void> refresh() {
-    return _$refreshAsyncAction.run(() => super.refresh());
-  }
-
   final _$loadNextPageAsyncAction = AsyncAction('loadNextPage');
 
   @override
@@ -88,21 +98,24 @@ mixin _$StoriesStore on StoriesStoreBase, Store {
     return _$loadNextPageAsyncAction.run(() => super.loadNextPage());
   }
 
-  final _$_loadStoriesAsyncAction = AsyncAction('_loadStories');
-
-  @override
-  Future<void> _loadStories() {
-    return _$_loadStoriesAsyncAction.run(() => super._loadStories());
-  }
-
   final _$StoriesStoreBaseActionController =
       ActionController(name: 'StoriesStoreBase');
 
   @override
-  Future<void> loadInitialStories() {
+  Future<void> refresh() {
     final _$actionInfo = _$StoriesStoreBaseActionController.startAction();
     try {
-      return super.loadInitialStories();
+      return super.refresh();
+    } finally {
+      _$StoriesStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void retry() {
+    final _$actionInfo = _$StoriesStoreBaseActionController.startAction();
+    try {
+      return super.retry();
     } finally {
       _$StoriesStoreBaseActionController.endAction(_$actionInfo);
     }

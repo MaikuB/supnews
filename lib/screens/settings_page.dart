@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import '../stores/settings_store.dart';
 
 class SettingsPage extends StatefulWidget {
+  final SettingsStore store;
+
+  SettingsPage(this.store);
   @override
   _SettingsPageState createState() => _SettingsPageState();
 }
@@ -13,37 +15,34 @@ class _SettingsPageState extends State<SettingsPage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    final store = Provider.of<SettingsStore>(context);
-    return Scaffold(
-      body: Column(
-        children: <Widget>[
-          Observer(
-            builder: (_) => Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 16),
-                  child: SwitchListTile(
-                    title: Text('Dark mode'),
-                    subtitle: Text(
-                        'Note: this won\'t affect the articles that are displayed'),
-                    value: store.useDarkMode,
-                    onChanged: (bool value) {
-                      store.setDarkMode(value);
-                    },
-                  ),
-                ),
-          ),
-          Observer(
-            builder: (_) => SwitchListTile(
-                  title: Text('Display stories within app'),
+    return Column(
+      children: <Widget>[
+        Observer(
+          builder: (_) => Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 16),
+                child: SwitchListTile(
+                  title: Text('Dark mode'),
                   subtitle: Text(
-                      'Controls the default behaviour when tapping on a story to read'),
-                  value: store.openInApp,
+                      'Note: this won\'t affect the articles that are displayed'),
+                  value: widget.store.useDarkMode,
                   onChanged: (bool value) {
-                    store.setOpenInApp(value);
+                    widget.store.setDarkMode(value);
                   },
                 ),
-          ),
-        ],
-      ),
+              ),
+        ),
+        Observer(
+          builder: (_) => SwitchListTile(
+                title: Text('Display stories within app'),
+                subtitle: Text(
+                    'Controls the default behaviour when tapping on a story to read'),
+                value: widget.store.openInApp,
+                onChanged: (bool value) {
+                  widget.store.setOpenInApp(value);
+                },
+              ),
+        ),
+      ],
     );
   }
 
