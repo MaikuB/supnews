@@ -21,30 +21,11 @@ class _StoriesPageState<T extends StoriesStore> extends State<StoriesPage>
   @override
   void initState() {
     super.initState();
-    /*_streamSubscription =
-        Connectivity().onConnectivityChanged.listen((connectivityResult) {
-      if (connectivityResult == ConnectivityResult.none) {
-        Scaffold.of(context).showSnackBar(SnackBar(content: Text('Offline')));
-      } else {
-        Scaffold.of(context).showSnackBar(SnackBar(content: Text('Online')));
-      }
-    });*/
-    /*_disposeConnectivityReaction = autorun((_) {
-      if (!mounted) {
-        return;
-      }
-      if (widget.store.connectivityChanged.value == ConnectivityResult.none) {
-        Scaffold.of(context).showSnackBar(SnackBar(content: Text('Offline')));
-      } else {
-        Scaffold.of(context).showSnackBar(SnackBar(content: Text('Online')));
-      }
-    });*/
     widget.store.loadInitialStories();
   }
 
   @override
   void dispose() {
-    //_streamSubscription.cancel();
     super.dispose();
   }
 
@@ -59,6 +40,7 @@ class _StoriesPageState<T extends StoriesStore> extends State<StoriesPage>
           case FutureStatus.rejected:
             return Center(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text('Oops something went wrong'),
                   RaisedButton(

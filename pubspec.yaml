@@ -30,7 +30,6 @@ dependencies:
   intl: ^0.15.8
   hnpwa_client: ^1.0.0
   flutter_statusbarcolor: ^0.2.0
-  connectivity: ^0.4.3+1
   async:
 
   
