@@ -5,7 +5,7 @@ import '../stores/settings_store.dart';
 class SettingsPage extends StatefulWidget {
   final SettingsStore store;
 
-  SettingsPage(this.store);
+  SettingsPage(this.store, {Key key}) : super(key: key);
   @override
   _SettingsPageState createState() => _SettingsPageState();
 }

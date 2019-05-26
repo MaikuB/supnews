@@ -60,10 +60,12 @@ abstract class StoriesStoreBase implements Store {
   }
 
   Future<void> openInBrowser(String url) {
+    // Could route this through another service that could make use of the launcher plugin on mobile but do something else on other platforms
     return launch(url, forceSafariVC: false, forceWebView: false);
   }
 
   Future<void> share(String url) {
+    // Could also route this through another service
     return Share.share(url);
   }
 
@@ -89,6 +91,7 @@ abstract class StoriesStoreBase implements Store {
     }
   }
 
+  @action
   Future<void> _loadFirstPageStories() async {
     feedItems.clear();
     _currentPage = 1;

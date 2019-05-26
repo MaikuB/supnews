@@ -25,11 +25,6 @@ class _StoriesPageState<T extends StoriesStore> extends State<StoriesPage>
   }
 
   @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     super.build(context);
     return Observer(
@@ -60,20 +55,25 @@ class _StoriesPageState<T extends StoriesStore> extends State<StoriesPage>
                   widget.store.loadNextPage();
                 }
               },
-              child: ListView.builder(
-                itemCount: widget.store.feedItems.length,
-                itemBuilder: (context, index) {
-                  if (index == widget.store.feedItems.length - 1 &&
-                      widget.store.hasNextPage &&
-                      !widget.store.loadingNextPage) {
-                    return Column(
-                      children: [
-                        Story(widget.store, widget.store.feedItems[index]),
-                        PlaceholderStory(),
-                      ],
-                    );
-                  }
-                  return Story(widget.store, widget.store.feedItems[index]);
+              child: RefreshIndicator(
+                child: ListView.builder(
+                  itemCount: widget.store.feedItems.length,
+                  itemBuilder: (context, index) {
+                    if (index == widget.store.feedItems.length - 1 &&
+                        widget.store.hasNextPage &&
+                        !widget.store.loadingNextPage) {
+                      return Column(
+                        children: [
+                          Story(widget.store, widget.store.feedItems[index]),
+                          PlaceholderStory(),
+                        ],
+                      );
+                    }
+                    return Story(widget.store, widget.store.feedItems[index]);
+                  },
+                ),
+                onRefresh: () async {
+                  await widget.store.refresh();
                 },
               ),
             );

@@ -98,6 +98,15 @@ mixin _$StoriesStore on StoriesStoreBase, Store {
     return _$loadNextPageAsyncAction.run(() => super.loadNextPage());
   }
 
+  final _$_loadFirstPageStoriesAsyncAction =
+      AsyncAction('_loadFirstPageStories');
+
+  @override
+  Future<void> _loadFirstPageStories() {
+    return _$_loadFirstPageStoriesAsyncAction
+        .run(() => super._loadFirstPageStories());
+  }
+
   final _$StoriesStoreBaseActionController =
       ActionController(name: 'StoriesStoreBase');
 
