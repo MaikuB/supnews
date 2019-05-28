@@ -70,68 +70,72 @@ class ThemeableApp extends StatelessWidget {
           ),
         );
         return MaterialApp(
-            title: 'SUpNews',
-            theme: themeData,
-            home: SafeArea(
-              child: CupertinoTabScaffold(
-                tabBar: CupertinoTabBar(
-                  items: [
-                    BottomNavigationBarItem(
-                      icon: Icon(Icons.new_releases),
-                      title: Text('New'),
-                    ),
-                    BottomNavigationBarItem(
-                      icon: Icon(Icons.trending_up),
-                      title: Text('Top'),
-                    ),
-                    BottomNavigationBarItem(
-                      icon: Icon(Icons.settings),
-                      title: Text('Settings'),
-                    ),
-                  ],
-                ),
-                tabBuilder: (BuildContext context, int index) {
-                  switch (index) {
-                    case 0:
-                      // TODO: look at using ProxyProvider when that lands
-                      return Provider(
-                        builder: (_) => NewStoriesStore(
-                              Provider.of<HnpwaClient>(context),
-                              Provider.of<PreferencesService>(context),
-                            ),
-                        child: Consumer<NewStoriesStore>(
-                          builder: (context, value, _) => Scaffold(
-                                body: NewStoriesPage(
-                                  value,
-                                ),
-                              ),
-                        ),
-                      );
-                    case 1:
-                      return Provider(
-                        builder: (_) => TopStoriesStore(
-                              Provider.of<HnpwaClient>(context),
-                              Provider.of<PreferencesService>(context),
-                            ),
-                        child: Consumer<TopStoriesStore>(
-                          builder: (context, value, _) => Scaffold(
-                                body: TopStoriesPage(
-                                  value,
-                                ),
-                              ),
-                        ),
-                      );
-                    case 2:
-                      return Consumer<SettingsStore>(
-                        builder: (context, value, _) => Scaffold(
-                              body: SettingsPage(value),
-                            ),
-                      );
-                  }
-                  return null;
-                },
+          title: 'SUpNews',
+          theme: themeData,
+          home: SafeArea(
+            child: CupertinoTabScaffold(
+              tabBar: CupertinoTabBar(
+                items: [
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.new_releases),
+                    title: Text('New'),
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.trending_up),
+                    title: Text('Top'),
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.settings),
+                    title: Text('Settings'),
+                  ),
+                ],
               ),
-            ));
+              tabBuilder: (BuildContext context, int index) {
+                switch (index) {
+                  case 0:
+                    return Consumer2<HnpwaClient, PreferencesService>(
+                      builder: (context, hnpwaClient, preferencesService, _) =>
+                          Provider(
+                            builder: (_) => NewStoriesStore(
+                                hnpwaClient, preferencesService),
+                            child: Consumer<NewStoriesStore>(
+                              builder: (context, value, _) => Scaffold(
+                                    body: NewStoriesPage(
+                                      value,
+                                    ),
+                                  ),
+                            ),
+                          ),
+                    );
+                  case 1:
+                    return Consumer2<HnpwaClient, PreferencesService>(
+                      builder: (context, hnpwaClient, preferencesService, _) =>
+                          Provider(
+                            builder: (_) => TopStoriesStore(
+                                  hnpwaClient,
+                                  preferencesService,
+                                ),
+                            child: Consumer<TopStoriesStore>(
+                              builder: (context, value, _) => Scaffold(
+                                    body: TopStoriesPage(
+                                      value,
+                                    ),
+                                  ),
+                            ),
+                          ),
+                    );
+                  case 2:
+                    return Consumer<SettingsStore>(
+                      builder: (context, value, _) => Scaffold(
+                            body: SettingsPage(value),
+                          ),
+                    );
+                }
+                return null;
+              },
+            ),
+          ),
+        );
       },
     );
   }
