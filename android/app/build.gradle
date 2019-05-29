@@ -78,23 +78,6 @@ flutter {
     source '../..'
 }
 
-// workaround include 64-bit build as well for now until Flutter enables it as the default
-afterEvaluate {
-    mergeReleaseJniLibFolders.doLast {
-        def archTypes = ["arm-release", "arm64-release"]
-        archTypes.forEach { item ->
-            copy {
-                from zipTree("$flutterRoot/bin/cache/artifacts/engine/android-$item/flutter.jar")
-                include 'lib/*/libflutter.so'
-                into "$buildDir/intermediates/jniLibs/release/"
-                eachFile {
-                    it.path = it.path.replaceFirst("lib/", "")
-                }
-            }
-        }
-    }
-}
-
 dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0'
