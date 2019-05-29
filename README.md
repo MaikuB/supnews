@@ -1,16 +1,12 @@
 # supnews
 
-A new Flutter project.
+A simple Flutter app for displaying stories retrieved from Hacker News. Uses the [provider](https://github.com/rrousselGit/provider) package along with [MobX](https://mobx.pub) to managing the architecture
 
-## Getting Started
+The app demonstrates
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+* Using MobX for managing UI state where stores function as view models that may talk to other services
+* `provider` is used to organise stores and inject them into the appropriate widgets. Services are injected into the stores via `provider` as well
+* How to load more items into a `ListView` based on scroll position by invoking an action in MobX
+* Opening stories using the [url_launcher](https://github.com/flutter/plugins/tree/master/packages/url_launcher) package with the ability to load them in the browser instead of doing so "in-app"
+* Toggling between dark and light mode
+* Using a Cupertino widgets within a material app
