@@ -1,5 +1,5 @@
-import 'package:supnews/services/preferences_service.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../services/preferences_service.dart';
 
 class StoryService {
   final PreferencesService _preferencesService;

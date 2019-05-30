@@ -1,7 +1,6 @@
 import 'package:async/async.dart';
 import 'package:hnpwa_client/hnpwa_client.dart';
 import 'package:mobx/mobx.dart';
-import 'package:supnews/stores/favourites_store.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../common/enums.dart';
 import '../services/preferences_service.dart';

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:hnpwa_client/hnpwa_client.dart';
 import 'package:mobx/mobx.dart';
-import 'package:supnews/services/preferences_service.dart';
+import '../services/preferences_service.dart';
 
 part 'favourites_store.g.dart';
 
