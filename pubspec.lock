@@ -196,9 +196,11 @@ packages:
   hnpwa_client:
     dependency: "direct main"
     description:
-      name: hnpwa_client
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: af4e34e9fca4d5c4e9f3aaa9beca6e3fdee73147
+      url: "https://github.com/MaikuB/hnpwa_client.git"
+    source: git
     version: "1.0.0"
   html:
     dependency: transitive

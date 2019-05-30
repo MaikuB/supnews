@@ -38,6 +38,13 @@ class Story extends StatelessWidget {
                     ),
                     TextSpacer(
                       Text(
+                        item.url,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.subtitle,
+                      ),
+                    ),
+                    TextSpacer(
+                      Text(
                         '${item.user} - ${DateFormat().format(
                           DateTime.fromMillisecondsSinceEpoch(item.time * 1000),
                         )}',
