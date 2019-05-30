@@ -4,7 +4,7 @@ import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'services/preferences_service.dart';
 import 'widgets/app.dart';
 
-Future main() async {
+Future<void> main() async {
   var sharedPreferences = await SharedPreferences.getInstance();
   await FlutterStatusbarcolor.setStatusBarColor(Colors.teal);
   if (useWhiteForeground(Colors.teal)) {

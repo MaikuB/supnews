@@ -129,4 +129,14 @@ mixin _$StoriesStore on StoriesStoreBase, Store {
       _$StoriesStoreBaseActionController.endAction(_$actionInfo);
     }
   }
+
+  @override
+  void loadInitialStories() {
+    final _$actionInfo = _$StoriesStoreBaseActionController.startAction();
+    try {
+      return super.loadInitialStories();
+    } finally {
+      _$StoriesStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
 }

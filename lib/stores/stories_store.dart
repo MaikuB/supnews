@@ -1,8 +1,8 @@
 import 'package:async/async.dart';
 import 'package:hnpwa_client/hnpwa_client.dart';
 import 'package:mobx/mobx.dart';
+import 'package:supnews/stores/favourites_store.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:share/share.dart';
 import '../common/enums.dart';
 import '../services/preferences_service.dart';
 
@@ -46,6 +46,7 @@ abstract class StoriesStoreBase implements Store {
     loadFeedItemsFuture = ObservableFuture(_loadFirstPageStories());
   }
 
+  @action
   void loadInitialStories() {
     loadFeedItemsFuture = ObservableFuture(_asyncMemoizer.runOnce(() async {
       await _loadFirstPageStories();
@@ -57,16 +58,6 @@ abstract class StoriesStoreBase implements Store {
     return launch(url,
         forceSafariVC: defaultOpenInAppPreference,
         forceWebView: defaultOpenInAppPreference);
-  }
-
-  Future<void> openInBrowser(String url) {
-    // Could route this through another service that could make use of the launcher plugin on mobile but do something else on other platforms
-    return launch(url, forceSafariVC: false, forceWebView: false);
-  }
-
-  Future<void> share(String url) {
-    // Could also route this through another service
-    return Share.share(url);
   }
 
   @action
