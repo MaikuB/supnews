@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:hnpwa_client/hnpwa_client.dart';
 import 'package:provider/provider.dart';
+import '../screens/favourites_page.dart';
+import '../stores/favourites_store.dart';
 import '../screens/new_stories_page.dart';
 import '../screens/settings_page.dart';
 import '../screens/top_stories_page.dart';
@@ -46,6 +48,10 @@ class ThemeableApp extends StatelessWidget {
                     title: Text('Top'),
                   ),
                   BottomNavigationBarItem(
+                    icon: Icon(Icons.favorite),
+                    title: Text('Favourites'),
+                  ),
+                  BottomNavigationBarItem(
                     icon: Icon(Icons.settings),
                     title: Text('Settings'),
                   ),
@@ -86,6 +92,12 @@ class ThemeableApp extends StatelessWidget {
                           ),
                     );
                   case 2:
+                    return Consumer<FavouritesStore>(
+                      builder: (context, value, _) => Scaffold(
+                            body: FavouritesPage(value),
+                          ),
+                    );
+                  case 3:
                     return Consumer<SettingsStore>(
                       builder: (context, value, _) => Scaffold(
                             body: SettingsPage(value),

@@ -64,12 +64,12 @@ class _StoriesPageState<T extends StoriesStore> extends State<StoriesPage>
                         !widget.store.loadingNextPage) {
                       return Column(
                         children: [
-                          Story(widget.store, widget.store.feedItems[index]),
+                          Story(widget.store.feedItems[index]),
                           PlaceholderStory(),
                         ],
                       );
                     }
-                    return Story(widget.store, widget.store.feedItems[index]);
+                    return Story(widget.store.feedItems[index]);
                   },
                 ),
                 onRefresh: () async {

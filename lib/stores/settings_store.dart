@@ -33,7 +33,7 @@ abstract class SettingsStoreBase implements Store {
     openInApp = updatedOpenInAppPreference;
   }
 
-  Future showPrivacyPolicy() async {
+  Future<void> showPrivacyPolicy() async {
     await launch('https://crossingthestreams.io/supnews-privacy-policy/',
         forceSafariVC: true, forceWebView: true);
   }
