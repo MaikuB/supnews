@@ -17,7 +17,8 @@ dependencies:
   shared_preferences: ^0.5.2
   share: ^0.6.1+1
   intl: ^0.15.8
-  hnpwa_client: ^1.0.0
+  hnpwa_client:
+    git: https://github.com/MaikuB/hnpwa_client.git
   flutter_statusbarcolor: ^0.2.0
   async:
 

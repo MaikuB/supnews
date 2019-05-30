@@ -1,4 +1,5 @@
 import 'package:mobx/mobx.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../services/preferences_service.dart';
 part 'settings_store.g.dart';
 
@@ -30,5 +31,10 @@ abstract class SettingsStoreBase implements Store {
   void setOpenInApp(bool updatedOpenInAppPreference) {
     _preferencesService.openInApp = updatedOpenInAppPreference;
     openInApp = updatedOpenInAppPreference;
+  }
+
+  Future showPrivacyPolicy() async {
+    await launch('https://crossingthestreams.io/supnews-privacy-policy/',
+        forceSafariVC: true, forceWebView: true);
   }
 }

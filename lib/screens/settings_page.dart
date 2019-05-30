@@ -42,6 +42,12 @@ class _SettingsPageState extends State<SettingsPage>
                 },
               ),
         ),
+        ListTile(
+          title: Text('Privacy policy'),
+          onTap: () async {
+            await widget.store.showPrivacyPolicy();
+          },
+        ),
       ],
     );
   }
