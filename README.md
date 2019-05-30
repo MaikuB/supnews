@@ -9,4 +9,5 @@ The app demonstrates
 * How to load more items into a `ListView` based on scroll position by invoking an action in MobX
 * Opening stories using the [url_launcher](https://github.com/flutter/plugins/tree/master/packages/url_launcher) package with the ability to load them in the browser instead of doing so "in-app"
 * Toggling between dark and light mode
+* Using custom fonts
 * Using a Cupertino widgets within a material app
