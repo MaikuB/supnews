@@ -16,12 +16,10 @@ abstract class StoriesStoreBase implements Store {
   final AsyncMemoizer _asyncMemoizer = AsyncMemoizer();
 
   int _currentPage = 1;
+  bool _isLoadingNextPage = false;
 
   @observable
   bool hasNextPage = false;
-
-  @observable
-  bool _isLoadingNextPage = false;
 
   @observable
   ObservableList<FeedItem> feedItems = ObservableList<FeedItem>();
