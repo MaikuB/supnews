@@ -9,13 +9,6 @@ part of 'favourites_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars
 
 mixin _$FavouritesStore on FavouritesStoreBase, Store {
-  Computed<bool> _$hasFavouritesComputed;
-
-  @override
-  bool get hasFavourites =>
-      (_$hasFavouritesComputed ??= Computed<bool>(() => super.hasFavourites))
-          .value;
-
   final _$favouritesAtom = Atom(name: 'FavouritesStoreBase.favourites');
 
   @override

@@ -25,6 +25,23 @@ mixin _$StoriesStore on StoriesStoreBase, Store {
     _$hasNextPageAtom.reportChanged();
   }
 
+  final _$_isLoadingNextPageAtom =
+      Atom(name: 'StoriesStoreBase._isLoadingNextPage');
+
+  @override
+  bool get _isLoadingNextPage {
+    _$_isLoadingNextPageAtom.reportObserved();
+    return super._isLoadingNextPage;
+  }
+
+  @override
+  set _isLoadingNextPage(bool value) {
+    _$_isLoadingNextPageAtom.context
+        .checkIfStateModificationsAreAllowed(_$_isLoadingNextPageAtom);
+    super._isLoadingNextPage = value;
+    _$_isLoadingNextPageAtom.reportChanged();
+  }
+
   final _$feedItemsAtom = Atom(name: 'StoriesStoreBase.feedItems');
 
   @override
