@@ -46,6 +46,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    // beginning of config for store release
     signingConfigs {
         release {
             keyAlias keystoreProperties['keyAlias']
@@ -63,7 +64,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    // end of config related to store release
 
+    // for debugging
     /*buildTypes {
         release {
             // TODO: Add your own signing config for the release build.

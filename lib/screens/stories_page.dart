@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx/mobx.dart';
+import 'package:incrementally_loading_listview/incrementally_loading_listview.dart';
 import '../stores/stories_store.dart';
 import '../widgets/placeholder_stories.dart';
 import '../widgets/placeholder_story.dart';
@@ -48,34 +49,30 @@ class _StoriesPageState<T extends StoriesStore> extends State<StoriesPage>
               ),
             );
           case FutureStatus.fulfilled:
-            return NotificationListener<ScrollNotification>(
-              onNotification: (scrollNotification) {
-                if (scrollNotification.metrics.pixels ==
-                    scrollNotification.metrics.maxScrollExtent) {
-                  widget.store.loadNextPage();
-                }
-              },
-              child: RefreshIndicator(
-                child: ListView.builder(
-                  itemCount: widget.store.feedItems.length,
-                  itemBuilder: (context, index) {
-                    if (index == widget.store.feedItems.length - 1 &&
-                        widget.store.hasNextPage &&
-                        !widget.store.loadingNextPage) {
-                      return Column(
-                        children: [
-                          Story(widget.store.feedItems[index]),
-                          PlaceholderStory(),
-                        ],
-                      );
-                    }
-                    return Story(widget.store.feedItems[index]);
-                  },
-                ),
-                onRefresh: () async {
-                  await widget.store.refresh();
+            return RefreshIndicator(
+              child: IncrementallyLoadingListView(
+                loadMore: () async {
+                  await widget.store.loadNextPage();
+                },
+                hasMore: () => widget.store.hasNextPage,
+                itemCount: () => widget.store.feedItems.length,
+                itemBuilder: (context, index) {
+                  if (index == widget.store.feedItems.length - 1 &&
+                      widget.store.hasNextPage &&
+                      !widget.store.loadingNextPage) {
+                    return Column(
+                      children: [
+                        Story(widget.store.feedItems[index]),
+                        PlaceholderStory(),
+                      ],
+                    );
+                  }
+                  return Story(widget.store.feedItems[index]);
                 },
               ),
+              onRefresh: () async {
+                await widget.store.refresh();
+              },
             );
         }
       },

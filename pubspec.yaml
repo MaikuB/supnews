@@ -20,6 +20,7 @@ dependencies:
   hnpwa_client:
     git: https://github.com/MaikuB/hnpwa_client.git
   flutter_statusbarcolor: ^0.2.0
+  incrementally_loading_listview: ^0.1.0+1
   async:
 
   
