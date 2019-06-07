@@ -9,7 +9,7 @@ part 'stories_store.g.dart';
 
 class StoriesStore = StoriesStoreBase with _$StoriesStore;
 
-abstract class StoriesStoreBase implements Store {
+abstract class StoriesStoreBase with Store {
   final StoryFeedType _storyFeedType;
   final HnpwaClient _hnpwaClient;
   final PreferencesService _preferencesService;

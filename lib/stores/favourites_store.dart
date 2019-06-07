@@ -8,7 +8,7 @@ part 'favourites_store.g.dart';
 
 class FavouritesStore = FavouritesStoreBase with _$FavouritesStore;
 
-abstract class FavouritesStoreBase implements Store {
+abstract class FavouritesStoreBase with Store {
   PreferencesService _preferencesService;
 
   FavouritesStoreBase(this._preferencesService);

@@ -5,7 +5,7 @@ part 'settings_store.g.dart';
 
 class SettingsStore = SettingsStoreBase with _$SettingsStore;
 
-abstract class SettingsStoreBase implements Store {
+abstract class SettingsStoreBase with Store {
   PreferencesService _preferencesService;
 
   @observable
