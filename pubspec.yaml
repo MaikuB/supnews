@@ -11,7 +11,7 @@ dependencies:
   http:
   mobx: ^0.2.0
   flutter_mobx: ^0.2.0+1
-  provider: ^2.0.0+1
+  provider: ^3.0.0
   url_launcher: ^5.0.3
   cupertino_icons: ^0.1.2
   shared_preferences: ^0.5.3+1
