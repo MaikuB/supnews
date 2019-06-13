@@ -1,5 +1,7 @@
 # supnews
 
+<a href='https://play.google.com/store/apps/details?id=io.crossingthestreams.supnews&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height='48px'/></a>
+
 A simple Flutter app for displaying stories retrieved from Hacker News. Uses the [provider](https://github.com/rrousselGit/provider) package along with [MobX](https://mobx.pub) to managing the architecture
 
 The app demonstrates
@@ -9,11 +11,11 @@ The app demonstrates
 * Using `provider` to resolve dependencies using the static `Provider.of<T>(context)` method
 * How to load more items into a `ListView` based on scroll position by invoking an action in MobX
 * Opening stories using the [url_launcher](https://github.com/flutter/plugins/tree/master/packages/url_launcher) package with the ability to load them in the browser instead of doing so "in-app"
-* Toggling between dark and light mode
+* Toggling between dark and light theme
 * Using custom fonts
 * Using a Cupertino widgets within a material app
 
-When trying to debug on your machine via an Android device, you'll currently need to go to android/app/build.gradle and modify the contents to comment out/remove the store release related configuration. The relevant sections look like as follows
+When trying to debug on your machine via an Android device, you'll currently need to go to android/app/build.gradle and modify the contents to comment out/remove the store release related configuration. The latter configuration is there as I currently have this setup with [Codemagic](https://codemagic.io/) to deploy to the Google Play store. The relevant sections look like as follows
 
 ```
 // beginning of config for store release
@@ -78,3 +80,6 @@ buildTypes {
     }
 }
 ```
+
+## Attributions
+Google Play and the Google Play logo are trademarks of Google LLC.
