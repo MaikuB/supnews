@@ -1,5 +1,6 @@
 # supnews
 
+[![Codemagic build status](https://api.codemagic.io/apps/5cd97d9341300a1c8aa14062/5cd97d9341300a1c8aa14061/status_badge.svg)](https://codemagic.io/apps/5cd97d9341300a1c8aa14062/5cd97d9341300a1c8aa14061/latest_build)
 <a href='https://play.google.com/store/apps/details?id=io.crossingthestreams.supnews&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height='48px'/></a>
 
 A simple Flutter app for displaying stories retrieved from Hacker News. Uses the [provider](https://github.com/rrousselGit/provider) package along with [MobX](https://mobx.pub) to managing the architecture
