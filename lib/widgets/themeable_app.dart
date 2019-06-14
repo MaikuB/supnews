@@ -66,8 +66,8 @@ class ThemeableApp extends StatelessWidget {
                             builder: (_) => NewStoriesStore(
                                 hnpwaClient, preferencesService),
                             child: Consumer<NewStoriesStore>(
-                              builder: (context, value, _) => Scaffold(
-                                    body: NewStoriesPage(
+                              builder: (context, value, _) => Material(
+                                    child: NewStoriesPage(
                                       value,
                                     ),
                                   ),
@@ -83,8 +83,8 @@ class ThemeableApp extends StatelessWidget {
                                   preferencesService,
                                 ),
                             child: Consumer<TopStoriesStore>(
-                              builder: (context, value, _) => Scaffold(
-                                    body: TopStoriesPage(
+                              builder: (context, value, _) => Material(
+                                    child: TopStoriesPage(
                                       value,
                                     ),
                                   ),
@@ -93,14 +93,14 @@ class ThemeableApp extends StatelessWidget {
                     );
                   case 2:
                     return Consumer<FavouritesStore>(
-                      builder: (context, value, _) => Scaffold(
-                            body: FavouritesPage(value),
+                      builder: (context, value, _) => Material(
+                            child: FavouritesPage(value),
                           ),
                     );
                   case 3:
                     return Consumer<SettingsStore>(
-                      builder: (context, value, _) => Scaffold(
-                            body: SettingsPage(value),
+                      builder: (context, value, _) => Material(
+                            child: SettingsPage(value),
                           ),
                     );
                 }
