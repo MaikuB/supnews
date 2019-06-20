@@ -16,6 +16,8 @@ The app demonstrates
 * Using custom fonts
 * Using a Cupertino widgets within a material app
 
+**NOTE**: when the app was originally written, the `ProxyProvider` class wasn't available yet in the `provider` package. It should be possible to update the app to make of use of it
+
 When trying to debug on your machine via an Android device, you'll currently need to go to android/app/build.gradle and modify the contents to comment out/remove the store release related configuration. The latter configuration is there as I currently have this setup with [Codemagic](https://codemagic.io/) to deploy to the Google Play store. The relevant sections look like as follows
 
 ```
