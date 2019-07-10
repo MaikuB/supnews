@@ -31,8 +31,6 @@ class _StoriesPageState<T extends StoriesStore> extends State<StoriesPage>
     return Observer(
       builder: (_) {
         switch (widget.store.loadFeedItemsFuture.status) {
-          case FutureStatus.pending:
-            return PlaceholderStories();
           case FutureStatus.rejected:
             return Center(
               child: Column(
@@ -74,6 +72,9 @@ class _StoriesPageState<T extends StoriesStore> extends State<StoriesPage>
                 await widget.store.refresh();
               },
             );
+          case FutureStatus.pending:
+          default:
+            return PlaceholderStories();
         }
       },
     );
