@@ -28,8 +28,8 @@ class ThemeableApp extends StatelessWidget {
               : Brightness.light,
           primarySwatch: Colors.teal,
           textTheme: TextTheme(
-            subhead: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-            subtitle: TextStyle(fontWeight: FontWeight.w300),
+            subtitle1: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+            subtitle2: TextStyle(fontWeight: FontWeight.w300),
           ),
         );
         return MaterialApp(

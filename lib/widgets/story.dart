@@ -40,13 +40,13 @@ class Story extends StatelessWidget {
                   children: [
                     TextSpacer(
                       Text(_item.title,
-                          style: Theme.of(context).textTheme.subhead),
+                          style: Theme.of(context).textTheme.subtitle1),
                     ),
                     TextSpacer(
                       Text(
                         _item.url,
                         overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.subtitle,
+                        style: Theme.of(context).textTheme.subtitle2,
                       ),
                     ),
                     TextSpacer(
@@ -55,12 +55,12 @@ class Story extends StatelessWidget {
                           DateTime.fromMillisecondsSinceEpoch(
                               _item.time * 1000),
                         )}',
-                        style: Theme.of(context).textTheme.subtitle,
+                        style: Theme.of(context).textTheme.subtitle2,
                       ),
                     ),
                     Text(
                       '${_item.commentsCount} ${_item.commentsCount == 1 ? 'comment' : 'comments'}',
-                      style: Theme.of(context).textTheme.subtitle,
+                      style: Theme.of(context).textTheme.subtitle2,
                     ),
                   ],
                 ),
@@ -78,41 +78,40 @@ class Story extends StatelessWidget {
             builder: (BuildContext bc) {
               return Observer(
                 builder: (_) => Container(
-                      child: new Wrap(
-                        children: <Widget>[
-                          new ListTile(
-                            leading: new Icon(Icons.favorite),
-                            title: new Text(
-                                favouritesStore.isInFavourites(_item)
-                                    ? 'Remove from favourites'
-                                    : 'Add to favourites'),
-                            onTap: () {
-                              favouritesStore.isInFavourites(_item)
-                                  ? favouritesStore.removeFavourite(_item)
-                                  : favouritesStore.addFavourite(_item);
-                              Navigator.of(context).pop();
-                            },
-                          ),
-                          new ListTile(
-                            leading: new Icon(Icons.open_in_browser),
-                            title: new Text('Open in browser'),
-                            onTap: () async {
-                              await storyService.openInBrowser(_item.url);
-                              Navigator.of(context).pop();
-                            },
-                          ),
-                          if (_item.url != null)
-                            new ListTile(
-                              leading: new Icon(Icons.share),
-                              title: new Text('Share'),
-                              onTap: () async {
-                                await sharingService.share(_item.url);
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                        ],
+                  child: new Wrap(
+                    children: <Widget>[
+                      new ListTile(
+                        leading: new Icon(Icons.favorite),
+                        title: new Text(favouritesStore.isInFavourites(_item)
+                            ? 'Remove from favourites'
+                            : 'Add to favourites'),
+                        onTap: () {
+                          favouritesStore.isInFavourites(_item)
+                              ? favouritesStore.removeFavourite(_item)
+                              : favouritesStore.addFavourite(_item);
+                          Navigator.of(context).pop();
+                        },
                       ),
-                    ),
+                      new ListTile(
+                        leading: new Icon(Icons.open_in_browser),
+                        title: new Text('Open in browser'),
+                        onTap: () async {
+                          await storyService.openInBrowser(_item.url);
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      if (_item.url != null)
+                        new ListTile(
+                          leading: new Icon(Icons.share),
+                          title: new Text('Share'),
+                          onTap: () async {
+                            await sharingService.share(_item.url);
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                    ],
+                  ),
+                ),
               );
             });
       },

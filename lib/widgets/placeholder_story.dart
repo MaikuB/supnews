@@ -55,7 +55,7 @@ class _PlaceholderStoryState extends State<PlaceholderStory>
                     PlaceholderContainer(
                       child: Text(
                         '',
-                        style: Theme.of(context).textTheme.subhead,
+                        style: Theme.of(context).textTheme.subtitle1,
                       ),
                       animation: animation,
                     ),
@@ -64,14 +64,14 @@ class _PlaceholderStoryState extends State<PlaceholderStory>
                     PlaceholderContainer(
                       child: Text(
                         '',
-                        style: Theme.of(context).textTheme.subtitle,
+                        style: Theme.of(context).textTheme.subtitle2,
                       ),
                       animation: animation,
                     ),
                   ),
                   PlaceholderContainer(
                     child:
-                        Text('', style: Theme.of(context).textTheme.subtitle),
+                        Text('', style: Theme.of(context).textTheme.subtitle2),
                     animation: animation,
                   ),
                 ],
