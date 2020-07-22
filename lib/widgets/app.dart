@@ -18,22 +18,22 @@ class App extends StatelessWidget {
     return MultiProvider(
       providers: [
         Provider<PreferencesService>(
-          builder: (_) => _preferencesService,
+          create: (_) => _preferencesService,
         ),
         Provider<HnpwaClient>(
-          builder: (_) => HnpwaClient(),
+          create: (_) => HnpwaClient(),
         ),
         Provider<SettingsStore>(
-          builder: (_) => SettingsStore(_preferencesService),
+          create: (_) => SettingsStore(_preferencesService),
         ),
         Provider<FavouritesStore>(
-          builder: (_) => FavouritesStore(_preferencesService),
+          create: (_) => FavouritesStore(_preferencesService),
         ),
         Provider<SharingService>(
-          builder: (_) => SharingService(),
+          create: (_) => SharingService(),
         ),
         Provider<StoryService>(
-          builder: (_) => StoryService(_preferencesService),
+          create: (_) => StoryService(_preferencesService),
         )
       ],
       child: Consumer<SettingsStore>(

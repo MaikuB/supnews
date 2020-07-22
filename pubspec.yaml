@@ -9,8 +9,8 @@ dependencies:
   flutter:
     sdk: flutter
   http:
-  mobx: ^0.2.0
-  flutter_mobx: ^0.2.0+1
+  mobx: ^1.2.1+1
+  flutter_mobx: ^1.1.0+1
   provider: ^3.0.0
   url_launcher: ^5.0.3
   cupertino_icons: ^0.1.2
@@ -18,7 +18,6 @@ dependencies:
   share: ^0.6.1+1
   intl: ^0.15.8
   hnpwa_client:
-    git: https://github.com/MaikuB/hnpwa_client.git
   flutter_statusbarcolor: ^0.2.0
   incrementally_loading_listview: ^0.1.0+1
   async:
@@ -28,8 +27,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mobx_codegen: ^0.2.0+1
-  build_runner: ^1.5.1
+  mobx_codegen: ^1.1.0+1
+  build_runner: ^1.10.0
 
 flutter:
   uses-material-design: true

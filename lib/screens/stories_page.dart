@@ -39,8 +39,8 @@ class _StoriesPageState<T extends StoriesStore> extends State<StoriesPage>
                   Text('Oops something went wrong'),
                   RaisedButton(
                     child: Text('Retry'),
-                    onPressed: () {
-                      widget.store.retry();
+                    onPressed: () async {
+                      await widget.store.retry();
                     },
                   ),
                 ],
