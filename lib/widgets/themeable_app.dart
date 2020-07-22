@@ -63,45 +63,45 @@ class ThemeableApp extends StatelessWidget {
                     return Consumer2<HnpwaClient, PreferencesService>(
                       builder: (context, hnpwaClient, preferencesService, _) =>
                           Provider(
-                            builder: (_) => NewStoriesStore(
-                                hnpwaClient, preferencesService),
-                            child: Consumer<NewStoriesStore>(
-                              builder: (context, value, _) => Material(
-                                    child: NewStoriesPage(
-                                      value,
-                                    ),
-                                  ),
+                        create: (_) =>
+                            NewStoriesStore(hnpwaClient, preferencesService),
+                        child: Consumer<NewStoriesStore>(
+                          builder: (context, value, _) => Material(
+                            child: NewStoriesPage(
+                              value,
                             ),
                           ),
+                        ),
+                      ),
                     );
                   case 1:
                     return Consumer2<HnpwaClient, PreferencesService>(
                       builder: (context, hnpwaClient, preferencesService, _) =>
                           Provider(
-                            builder: (_) => TopStoriesStore(
-                                  hnpwaClient,
-                                  preferencesService,
-                                ),
-                            child: Consumer<TopStoriesStore>(
-                              builder: (context, value, _) => Material(
-                                    child: TopStoriesPage(
-                                      value,
-                                    ),
-                                  ),
+                        create: (_) => TopStoriesStore(
+                          hnpwaClient,
+                          preferencesService,
+                        ),
+                        child: Consumer<TopStoriesStore>(
+                          builder: (context, value, _) => Material(
+                            child: TopStoriesPage(
+                              value,
                             ),
                           ),
+                        ),
+                      ),
                     );
                   case 2:
                     return Consumer<FavouritesStore>(
                       builder: (context, value, _) => Material(
-                            child: FavouritesPage(value),
-                          ),
+                        child: FavouritesPage(value),
+                      ),
                     );
                   case 3:
                     return Consumer<SettingsStore>(
                       builder: (context, value, _) => Material(
-                            child: SettingsPage(value),
-                          ),
+                        child: SettingsPage(value),
+                      ),
                     );
                 }
                 return null;

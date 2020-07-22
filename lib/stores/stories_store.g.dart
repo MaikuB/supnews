@@ -6,75 +6,72 @@ part of 'stories_store.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$StoriesStore on StoriesStoreBase, Store {
   final _$hasNextPageAtom = Atom(name: 'StoriesStoreBase.hasNextPage');
 
   @override
   bool get hasNextPage {
-    _$hasNextPageAtom.reportObserved();
+    _$hasNextPageAtom.reportRead();
     return super.hasNextPage;
   }
 
   @override
   set hasNextPage(bool value) {
-    _$hasNextPageAtom.context
-        .checkIfStateModificationsAreAllowed(_$hasNextPageAtom);
-    super.hasNextPage = value;
-    _$hasNextPageAtom.reportChanged();
+    _$hasNextPageAtom.reportWrite(value, super.hasNextPage, () {
+      super.hasNextPage = value;
+    });
   }
 
   final _$feedItemsAtom = Atom(name: 'StoriesStoreBase.feedItems');
 
   @override
   ObservableList<FeedItem> get feedItems {
-    _$feedItemsAtom.reportObserved();
+    _$feedItemsAtom.reportRead();
     return super.feedItems;
   }
 
   @override
   set feedItems(ObservableList<FeedItem> value) {
-    _$feedItemsAtom.context
-        .checkIfStateModificationsAreAllowed(_$feedItemsAtom);
-    super.feedItems = value;
-    _$feedItemsAtom.reportChanged();
+    _$feedItemsAtom.reportWrite(value, super.feedItems, () {
+      super.feedItems = value;
+    });
   }
 
   final _$loadFeedItemsFutureAtom =
       Atom(name: 'StoriesStoreBase.loadFeedItemsFuture');
 
   @override
-  ObservableFuture get loadFeedItemsFuture {
-    _$loadFeedItemsFutureAtom.reportObserved();
+  ObservableFuture<dynamic> get loadFeedItemsFuture {
+    _$loadFeedItemsFutureAtom.reportRead();
     return super.loadFeedItemsFuture;
   }
 
   @override
-  set loadFeedItemsFuture(ObservableFuture value) {
-    _$loadFeedItemsFutureAtom.context
-        .checkIfStateModificationsAreAllowed(_$loadFeedItemsFutureAtom);
-    super.loadFeedItemsFuture = value;
-    _$loadFeedItemsFutureAtom.reportChanged();
+  set loadFeedItemsFuture(ObservableFuture<dynamic> value) {
+    _$loadFeedItemsFutureAtom.reportWrite(value, super.loadFeedItemsFuture, () {
+      super.loadFeedItemsFuture = value;
+    });
   }
 
   final _$loadingNextPageAtom = Atom(name: 'StoriesStoreBase.loadingNextPage');
 
   @override
   bool get loadingNextPage {
-    _$loadingNextPageAtom.reportObserved();
+    _$loadingNextPageAtom.reportRead();
     return super.loadingNextPage;
   }
 
   @override
   set loadingNextPage(bool value) {
-    _$loadingNextPageAtom.context
-        .checkIfStateModificationsAreAllowed(_$loadingNextPageAtom);
-    super.loadingNextPage = value;
-    _$loadingNextPageAtom.reportChanged();
+    _$loadingNextPageAtom.reportWrite(value, super.loadingNextPage, () {
+      super.loadingNextPage = value;
+    });
   }
 
-  final _$loadNextPageAsyncAction = AsyncAction('loadNextPage');
+  final _$loadNextPageAsyncAction =
+      AsyncAction('StoriesStoreBase.loadNextPage');
 
   @override
   Future<void> loadNextPage() {
@@ -82,7 +79,7 @@ mixin _$StoriesStore on StoriesStoreBase, Store {
   }
 
   final _$_loadFirstPageStoriesAsyncAction =
-      AsyncAction('_loadFirstPageStories');
+      AsyncAction('StoriesStoreBase._loadFirstPageStories');
 
   @override
   Future<void> _loadFirstPageStories() {
@@ -95,7 +92,8 @@ mixin _$StoriesStore on StoriesStoreBase, Store {
 
   @override
   Future<void> refresh() {
-    final _$actionInfo = _$StoriesStoreBaseActionController.startAction();
+    final _$actionInfo = _$StoriesStoreBaseActionController.startAction(
+        name: 'StoriesStoreBase.refresh');
     try {
       return super.refresh();
     } finally {
@@ -105,7 +103,8 @@ mixin _$StoriesStore on StoriesStoreBase, Store {
 
   @override
   void retry() {
-    final _$actionInfo = _$StoriesStoreBaseActionController.startAction();
+    final _$actionInfo = _$StoriesStoreBaseActionController.startAction(
+        name: 'StoriesStoreBase.retry');
     try {
       return super.retry();
     } finally {
@@ -115,11 +114,22 @@ mixin _$StoriesStore on StoriesStoreBase, Store {
 
   @override
   void loadInitialStories() {
-    final _$actionInfo = _$StoriesStoreBaseActionController.startAction();
+    final _$actionInfo = _$StoriesStoreBaseActionController.startAction(
+        name: 'StoriesStoreBase.loadInitialStories');
     try {
       return super.loadInitialStories();
     } finally {
       _$StoriesStoreBaseActionController.endAction(_$actionInfo);
     }
+  }
+
+  @override
+  String toString() {
+    return '''
+hasNextPage: ${hasNextPage},
+feedItems: ${feedItems},
+loadFeedItemsFuture: ${loadFeedItemsFuture},
+loadingNextPage: ${loadingNextPage}
+    ''';
   }
 }

@@ -5,6 +5,7 @@ import 'services/preferences_service.dart';
 import 'widgets/app.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   var sharedPreferences = await SharedPreferences.getInstance();
   await FlutterStatusbarcolor.setStatusBarColor(Colors.teal);
   if (useWhiteForeground(Colors.teal)) {

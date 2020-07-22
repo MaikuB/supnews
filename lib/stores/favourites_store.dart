@@ -43,6 +43,6 @@ abstract class FavouritesStoreBase with Store {
 
   void _saveFavourites() {
     _preferencesService.favourites =
-        favourites.map((fi) => jsonEncode(fi.toJson())).toList();
+        favourites.map((fi) => fi.toString()).toList();
   }
 }
