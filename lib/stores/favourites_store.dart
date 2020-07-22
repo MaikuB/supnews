@@ -42,7 +42,18 @@ abstract class FavouritesStoreBase with Store {
   }
 
   void _saveFavourites() {
-    _preferencesService.favourites =
-        favourites.map((fi) => fi.toString()).toList();
+    _preferencesService.favourites = favourites.map((fi) {
+      return jsonEncode(<String, Object>{
+        'id': fi.id,
+        'title': fi.title,
+        'points': fi.points,
+        'user': fi.user,
+        'time': fi.time,
+        'time_ago': fi.timeAgo,
+        'comments_count': fi.commentsCount,
+        'url': fi.url,
+        'domain': fi.domain,
+      });
+    }).toList();
   }
 }

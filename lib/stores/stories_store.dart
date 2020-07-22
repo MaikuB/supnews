@@ -1,4 +1,3 @@
-import 'package:async/async.dart';
 import 'package:hnpwa_client/hnpwa_client.dart';
 import 'package:mobx/mobx.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -13,7 +12,6 @@ abstract class StoriesStoreBase with Store {
   final StoryFeedType _storyFeedType;
   final HnpwaClient _hnpwaClient;
   final PreferencesService _preferencesService;
-  final AsyncMemoizer _asyncMemoizer = AsyncMemoizer();
 
   int _currentPage = 1;
   bool _isLoadingNextPage = false;
@@ -39,18 +37,16 @@ abstract class StoriesStoreBase with Store {
   }
 
   @action
-  void retry() {
-    loadFeedItemsFuture = ObservableFuture(_loadFirstPageStories());
+  Future<void> retry() {
+    return loadFeedItemsFuture = ObservableFuture(_loadFirstPageStories());
   }
 
   @action
-  void loadInitialStories() {
-    loadFeedItemsFuture = ObservableFuture(_asyncMemoizer.runOnce(() async {
-      await _loadFirstPageStories();
-    }));
+  Future<void> loadInitialStories() {
+    return loadFeedItemsFuture = ObservableFuture(_loadFirstPageStories());
   }
 
-  Future<void> open(String url) async {
+  Future<void> open(String url) {
     final defaultOpenInAppPreference = _preferencesService.openInApp;
     return launch(url,
         forceSafariVC: defaultOpenInAppPreference,

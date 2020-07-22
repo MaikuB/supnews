@@ -102,7 +102,7 @@ mixin _$StoriesStore on StoriesStoreBase, Store {
   }
 
   @override
-  void retry() {
+  Future<void> retry() {
     final _$actionInfo = _$StoriesStoreBaseActionController.startAction(
         name: 'StoriesStoreBase.retry');
     try {
@@ -113,7 +113,7 @@ mixin _$StoriesStore on StoriesStoreBase, Store {
   }
 
   @override
-  void loadInitialStories() {
+  Future<void> loadInitialStories() {
     final _$actionInfo = _$StoriesStoreBaseActionController.startAction(
         name: 'StoriesStoreBase.loadInitialStories');
     try {
